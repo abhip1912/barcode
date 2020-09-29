@@ -17,7 +17,8 @@ def index(request):
         resp = list(users.find({'email': mail}))
         if len(resp) > 0:
             if resp[0]['pass'] == pw:
-                return render(request, 'home.html')
+                data = list(orders.find())
+                return render(request, 'home.html', {'data': data})
             else:
                 return render(request, 'index.html')
         else:
